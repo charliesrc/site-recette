@@ -27,6 +27,7 @@
   // Connexion à la BDD
 
   $bdd = connexion($server, $user, $password, $dataBase);
+  $commentaire = mysqli_real_escape_string($bdd, $commentaire);
 
   newCom($commentaire, $id, $bdd);
 

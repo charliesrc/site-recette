@@ -88,7 +88,7 @@
   $com = "SELECT * FROM Commentaire INNER JOIN User ON Commentaire.Auteur = User.Id WHERE Commentaire.Recette_id='$id' ORDER BY Commentaire.Id DESC LIMIT 0, 5";
   $result2 = mysqli_query($bdd, $com);
 
-  $calculMoyenne = "SELECT AVG(Valeur) AS moy FROM Note_recette WHERE recette_id=".$_GET['id'];
+  $calculMoyenne = "SELECT AVG(Valeur) AS moy FROM Note_recette WHERE recette_id='$id'";
   $moy = mysqli_query($bdd, $calculMoyenne);
   $result_moy = mysqli_fetch_array($moy, MYSQLI_ASSOC);
   $moyenne = round($result_moy['moy'], 2);
@@ -99,8 +99,10 @@
       <h2><?php echo htmlspecialchars($row['Titre']); ?></h2>
       <h5><?php echo htmlspecialchars($row['Date_creation']); ?><h5>
       <?php if($row['Photo'] !== NULL) {?>
-      <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Bouffe" style="width:20%; height:20%;" />
+      <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Bouffe" style="width:40%; height:40%;" />
       <?php } ?>
+      </br>
+      </br>
       <p><?php echo htmlspecialchars($row['Contenu']); ?><p>
     </div>
   </div>
@@ -119,6 +121,7 @@
     <label class="col-md-4 control-label" for="note"></label>
         <div class="col-md-5">
           <select id="note" name="note" class="form-control">
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -128,14 +131,14 @@
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10,">10</option>
-            <option value="11,">11</option>
-            <option value="12,">12</option>
-            <option value="13,">13</option>
-            <option value="14,">14</option>
-            <option value="15,">15</option>
-            <option value="16,">16</option>
-            <option value="17,">17</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
             <option value="18">18</option>
             <option value="19">19</option>
             <option value="20">20</option>
@@ -154,7 +157,7 @@
     </fieldset>
     </form>
     <hr>
-    <p><?php print_r($result_moy['moy']); ?>/20</p>
+    <p><?php print_r($result_moy['moy']-1); ?>/20</p>
     </div>
 
     <div id="com" class="col-md-5 col-md-offset-1">
@@ -166,6 +169,7 @@
 
       <h5><?php echo htmlspecialchars($row2['Login']); ?><h5>
       <p><?php echo htmlspecialchars($row2['Contenu']); ?><p>
+      </br>
     <?php
       }
 
@@ -203,7 +207,7 @@
 
   <?php
 
-
+  mysqli_free_result($moy);
   mysqli_free_result($result);
 
   deco($bdd);

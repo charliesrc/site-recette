@@ -98,7 +98,7 @@ function noteCom($id, $note, $bdd){
     mysqli_query($bdd, $note_com);
   }
   else{
-    $note_modif = "UPDATE Note_recette SET Valeur ='$note' WHERE user_id='{$_SESSION['id']}'";
+    $note_modif = "UPDATE Note_recette SET Valeur ='$note' WHERE user_id='{$_SESSION['id']}' AND recette_id='$id'";
     $result1 = mysqli_query($bdd, $note_modif);
   }
 

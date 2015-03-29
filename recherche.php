@@ -79,8 +79,21 @@
   <?php
 
   $bdd = connexion($server, $user, $password, $dataBase);
-
-  $req_recherche = "SELECT * FROM Recette, User WHERE Recette.Titre LIKE '%$recherche%' OR User.Login LIKE '%$recherche%' LIMIT 5";
+  $tab_recherche = explode(" ", $recherche);
+  $i = 0;
+  $req_recherche = "SELECT * FROM Recette";
+  foreach ($tab_recherche as $mot) {
+    if(strlen($mot)>3){
+        if($i == 0){
+          $req_recherche.= " WHERE ";
+        }
+        else{
+          $req_recherche.= " OR ";
+        }
+        $req_recherche.= "Titre LIKE '%$mot%'";
+        $i++;
+    }
+  }
   $result = mysqli_query($bdd, $req_recherche);
 
   while ($row = mysqli_fetch_array($result)) {

@@ -31,6 +31,8 @@ session_start();
 
   // Connexion à la BDD
   $bdd = connexion($server, $user, $password, $dataBase);
+  $titre = mysqli_real_escape_string($bdd, $titre);
+  $contenu = mysqli_real_escape_string($bdd, $contenu);
 
   newRecette($titre, $photo, $contenu, $plat, $difficulte, $regime, $prix, $bdd);
 
