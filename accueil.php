@@ -29,7 +29,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -84,7 +84,7 @@
   ?>
 
   <div class="row" style="margin:0">
-    <div id="form" class="col-md-8 col-md-offset-3">
+    <div id="printRecette" class="col-md-8 col-md-offset-3">
       <h2><?php echo htmlspecialchars($row['Titre']); ?></h2>
       <h5><?php echo htmlspecialchars($row['Date_creation']); ?><h5>
         <?php if($row['Photo'] !== NULL) {?>
