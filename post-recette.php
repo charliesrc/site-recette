@@ -1,6 +1,7 @@
 <?php
   // Start the session
   session_start();
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -55,9 +56,9 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" action="recherche.php" method="post">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Une recette, un ami...">
+          <input type="text" name="recherche" class="form-control" placeholder="Une recette, un ami...">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Rechercher</button>
       </form>
